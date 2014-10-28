@@ -1,0 +1,21 @@
+-#  This file is app/views/movies/search_tmdb.html.haml
+%h1 The following movies containing "#{@search}" were found on TMDB
+
+=form_tag 'movies/add_tmdb' do
+  %table#movies
+    %thead
+      %tr
+        %th Movie Title
+        %th Rating
+        %th Release Date
+        %th Select
+    %tbody
+      - @movie_array.each do |movie|
+        %tr
+          %td= movie[:tmdb_title] 
+          %td= movie[:tmdb_rating]
+          %td= movie[:tmdb_release_date]
+          %td= check_box_tag "tmdb_movies[#{movie[:tmdb_id]}]"
+
+    =submit_tag "Add Selected Movies"
+
